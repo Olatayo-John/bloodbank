@@ -95,61 +95,56 @@ async function registerUser(event) {
         })
     }
     else {
-        const xhr = new XMLHttpRequest();
-        const apiURl = `controller/signup.controller.php`
-        const headers = {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-        }
-        const body = {
-            first_name: first_name,
-            last_name: last_name,
-            email: email,
-            password: password,
-            gender: gender,
-        };
-        xhr.open('POST', `${apiURl}`, true)
-        xhr.setRequestHeader("content-type", "application/x-www-form-encoded")
-        xhr.setRequestHeader('headers', `${headers}`);
-        xhr.send(body)
-        xhr.onload = function () {
-            console.log('users', this.responseText)
-        }
-        // $.ajax({
-        //     method: "post",
-        //     url: apiURl,
-        //     dataType: 'json',
-        //     data: {
-        //         first_name: first_name,
-        //         last_name: last_name,
-        //         email: email,
-        //         password: password,
-        //         gender: gender,
-        //     },
-        //     beforeSend: function (data) {
-        //         $("#submit").html("Sending...");
-        //     },
-        //     success: function (data) {
-        // if (data.status === "error") {
-        // console.log('Data', data);
-        //     window.location.reload();
-        // } else if (data.status === "invalid") {
-        //     console.log(data.msg);
-        //     $(".form_err").removeClass("text-success").addClass("text-danger");
-        //     $(".form_err").html(data.msg).show();
-        // } else if (data.status === "success") {
-        //     $(".form_err").removeClass("text-danger").addClass("text-success");
-        //     $(".form_err").html("Thanks for your Enquiry!!").show();
-
-        //     $(".fname").val("");
-        //     $(".mobile").val("");
-        //     $(".email").val("");
-        //     $(".msg").val("");
-
-        //     $("#submit").html("Send");
+        // const xhr = new XMLHttpRequest();
+        // const apiURl = `controller/signup.controller.php`
+        // const apiURl = `controller/signup.controller.php`
+        // const headers = {
+        //     "Content-Type": "application/json",
+        //     "Accept": "application/json",
         // }
-        //     }
-        // });
+        // const body = {
+        //     first_name: first_name,
+        //     last_name: last_name,
+        //     email: email,
+        //     password: password,
+        //     gender: gender,
+        // };
+        // xhr.open('POST', `${apiURl}`, true)
+        // xhr.setRequestHeader("content-type", "application/x-www-form-encoded")
+        // xhr.setRequestHeader('headers', `${headers}`);
+        // xhr.send(body)
+        // xhr.onload = function () {
+        //     console.log('users', this.responseText)
+        // }
+
+        var apiURl = 'controller/signup.controller.php';
+        var fname_v = $("#first_name").val();
+        var lname_v = $("#last_name").val();
+        var email_v = $("#email").val();
+        var pwd_v = $("#password").val();
+        var gender_v = $("#gender").val();
+
+        $.ajax({
+            method: "post",
+            url: apiURl,
+            dataType: 'json',
+            data: {
+                fname_v: fname_v,
+                lname_v: lname_v,
+                email_v: email_v,
+                pwd_v: pwd_v,
+                gender_v: gender_v,
+            },
+            success: function (data) {
+                console.log(data);
+
+                // if (data.status === "error") {
+                //     console.log('error');
+                // } else if (data.status === "invalid") {
+                //     console.log("success");
+                // }
+            }
+        });
 
     }
     // const first_name = $("#first_name").val();
